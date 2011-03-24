@@ -145,16 +145,17 @@ xdGestureHandler.prototype = {
 		this._trailSize      = getPref("mousetrail.size");
 		this._trailColor     = getPref("mousetrail.color");
 		this._gestureTimeout = getPref("gesture_timeout");
-		this._mouseGestureEnabled    = getPref("mousegesture");
-		this._wheelGestureEnabled    = getPref("wheelgesture");
-		this._rockerGestureEnabled   = getPref("rockergesture");
-		this._keypressGestureEnabled = getPref("keypressgesture");
+		this._mouseGestureEnabled        = getPref("mousegesture");
+		this._wheelGestureEnabled        = getPref("wheelgesture");
+		this._rockerGestureEnabled       = getPref("rockergesture");
+		this._rockerGestureMiddleEnabled = getPref("rockergesture.middle");
+		this._keypressGestureEnabled     = getPref("keypressgesture");
 		// prefs for wheel gestures and rocker gestures
 		this._drawArea.removeEventListener("DOMMouseScroll", this, true);
 		this._drawArea.removeEventListener("click", this, true);
 		if (this._wheelGestureEnabled)
 			this._drawArea.addEventListener("DOMMouseScroll", this, true);
-		if (this._rockerGestureEnabled)
+		if (this._rockerGestureEnabled || this._rockerGestureMiddleEnabled)
 			this._drawArea.addEventListener("click", this, true);
 		// prefs for tab wheel gesture
 		var tabbrowser = this._drawArea.ownerDocument.getBindingParent(this._drawArea);
@@ -163,11 +164,15 @@ xdGestureHandler.prototype = {
 			if (getPref("tabwheelgesture"))
 				tabbrowser.mStrip.addEventListener("DOMMouseScroll", this._wheelOnTabBar, true);
 		}
+		var prefSvc = Cc["@mozilla.org/preferences-service;1"]
+              .getService(Ci.nsIPrefBranch2)
+              .QueryInterface(Ci.nsIPrefService);
+		// if rocker gestures involving the middle mouse button are enabled, disable autoscroll
+		if (this._rockerGestureMiddleEnabled) {
+			prefSvc.setBoolPref("general.autoScroll", false);
+		}
 		// if trigger button is middle, disable loading the clipboard URL with middle click.
 		if (this._triggerButton == 1) {
-			var prefSvc = Cc["@mozilla.org/preferences-service;1"]
-			              .getService(Ci.nsIPrefBranch2)
-			              .QueryInterface(Ci.nsIPrefService);
 			prefSvc.setBoolPref("middlemouse.contentLoadURL", false);
 			// alert("middlemouse.contentLoadURL has been changed.");	// #debug
 		}
@@ -198,7 +203,9 @@ xdGestureHandler.prototype = {
 						break;
 					}
 					this._isMouseDownL = true;
-					this._isMouseDownM = false;	// fixed invalid state of _isMouseDownM after autoscrolling
+					if (!this._rockerGestureMiddleEnabled) {
+						this._isMouseDownM = false;	// fixed invalid state of _isMouseDownM after autoscrolling
+					}
 					// any gestures with left-button - start
 					if (this._triggerButton == 0 && !this._isMouseDownM && !this._isMouseDownR && !this._altKey(event)) {
 						this._state = STATE_GESTURE;
@@ -207,10 +214,14 @@ xdGestureHandler.prototype = {
 						if (this._mouseGestureEnabled)
 							event.preventDefault();
 					}
-					// rocker gesture
+					// rocker gestures
 					else if (this._rockerGestureEnabled && this._isMouseDownR) {
 						this._state = STATE_ROCKER;
 						this._invokeExtraGesture(event, "rocker-left");
+					}
+					else if (this._rockerGestureMiddleEnabled && this._isMouseDownM) {
+						this._state = STATE_ROCKER;
+						this._invokeExtraGesture(event, "rocker-middle-left");
 					}
 				}
 				else if (event.button == 1) {
@@ -222,6 +233,15 @@ xdGestureHandler.prototype = {
 						// prevent auto-scroll
 						event.stopPropagation();
 					}
+					// rocker gestures
+					else if (this._rockerGestureMiddleEnabled && this._isMouseDownL) {
+						this._state = STATE_ROCKER;
+						this._invokeExtraGesture(event, "rocker-left-middle");
+					}
+					else if (this._rockerGestureMiddleEnabled && this._isMouseDownR) {
+							this._state = STATE_ROCKER;
+							this._invokeExtraGesture(event, "rocker-right-middle");
+					}
 				}
 				else if (event.button == 2) {
 					// this fixes the problem: when showing context menu of a Flash movie, 
@@ -232,7 +252,9 @@ xdGestureHandler.prototype = {
 						break;
 					}
 					this._isMouseDownR = true;
-					this._isMouseDownM = false;	// fixed invalid state of _isMouseDownM after autoscrolling
+					if (!this._rockerGestureMiddleEnabled) {
+						this._isMouseDownM = false;	// fixed invalid state of _isMouseDownM after autoscrolling
+					}
 					this._suppressContext = false;	// only time to reset _suppressContext flag
 					this._enableContextMenu(true);
 					// any gestures with right-button - start
@@ -240,10 +262,14 @@ xdGestureHandler.prototype = {
 						this._state = STATE_GESTURE;
 						this._startGesture(event);
 					}
-					// rocker gesture
+					// rocker gestures
 					else if (this._rockerGestureEnabled && this._isMouseDownL) {
 						this._state = STATE_ROCKER;
 						this._invokeExtraGesture(event, "rocker-right");
+					}
+					else if (this._rockerGestureMiddleEnabled && this._isMouseDownM) {
+						this._state = STATE_ROCKER;
+						this._invokeExtraGesture(event, "rocker-middle-right");
 					}
 				}
 				break;
@@ -304,8 +330,9 @@ xdGestureHandler.prototype = {
 				}
 				break;
 			case "contextmenu": 
-				// [Linux] if right-click without holding left-button, display context menu artificially
-				if (!this._isMouseDownL && this._isMouseDownR) {
+				// [Linux] if right-click without holding left-button or middle-button, display context menu artificially
+				if (this._isMouseDownR &&
+					!this._isMouseDownL && (!this._rockerGestureMiddleEnabled || !this._isMouseDownM)) {
 					// #debug-begin
 					log("*** display context menu artificially");
 					if (PLATFORM == "Windows_NT")

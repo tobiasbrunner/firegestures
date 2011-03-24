@@ -16,10 +16,14 @@ const kDirectionCol = 3;
 const kFlagsCol     = 4;
 
 const kExtraArray1 = [
-	["wheelGestureU",  "wheel-up"    ],
-	["wheelGestureD",  "wheel-down"  ],
-	["rockerGestureL", "rocker-left" ],
-	["rockerGestureR", "rocker-right"],
+	["wheelGestureU",   "wheel-up"           ],
+	["wheelGestureD",   "wheel-down"         ],
+	["rockerGestureL",  "rocker-left"        ],
+	["rockerGestureR",  "rocker-right"       ],
+	["rockerGestureML", "rocker-middle-left" ],
+	["rockerGestureMR", "rocker-middle-right"],
+	["rockerGestureLM", "rocker-left-middle" ],
+	["rockerGestureRM", "rocker-right-middle"],
 ];
 
 const kExtraArray2 = [

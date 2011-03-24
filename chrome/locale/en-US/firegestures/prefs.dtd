@@ -34,6 +34,12 @@
 <!ENTITY rockerGesture "Rocker Gestures">
 <!ENTITY rockerGesture.left "Left-click with holding right-button">
 <!ENTITY rockerGesture.right "Right-click with holding left-button">
+<!ENTITY rockerGesture.middle "Rocker Gestures with middle-button">
+<!ENTITY rockerGesture.middle.description "These gestures are not compatible with autoscroll, which gets disabled on restart.">
+<!ENTITY rockerGesture.middle.left "Left-click with holding middle-button">
+<!ENTITY rockerGesture.middle.right "Right-click with holding middle-button">
+<!ENTITY rockerGesture.left.middle "Middle-click with holding left-button">
+<!ENTITY rockerGesture.right.middle "Middle-click with holding right-button">
 <!ENTITY keypressGesture "Keypress Gestures">
 <!ENTITY keypressGesture.ctrl "Mouse gesture with holding Ctrl key">
 <!ENTITY keypressGesture.shift "Mouse gesture with holding Shift key">

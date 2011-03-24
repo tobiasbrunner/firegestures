@@ -156,10 +156,11 @@
 
 	<prefpane id="advancedPane" label="&advancedPane;" flex="1">
 		<preferences>
-			<preference id="pref:wheelgesture"    name="extensions.firegestures.wheelgesture"    type="bool" />
-			<preference id="pref:rockergesture"   name="extensions.firegestures.rockergesture"   type="bool" />
-			<preference id="pref:keypressgesture" name="extensions.firegestures.keypressgesture" type="bool" />
-			<preference id="pref:tabwheelgesture" name="extensions.firegestures.tabwheelgesture" type="bool" />
+			<preference id="pref:wheelgesture"         name="extensions.firegestures.wheelgesture"         type="bool" />
+			<preference id="pref:rockergesture"        name="extensions.firegestures.rockergesture"        type="bool" />
+			<preference id="pref:rockergesture.middle" name="extensions.firegestures.rockergesture.middle" type="bool" />
+			<preference id="pref:keypressgesture"      name="extensions.firegestures.keypressgesture"      type="bool" />
+			<preference id="pref:tabwheelgesture"      name="extensions.firegestures.tabwheelgesture"      type="bool" />
 		</preferences>
 		<groupbox uigroup="wheelgesture">
 			<caption>
@@ -215,6 +216,46 @@
 					<row align="center">
 						<label value="&rockerGesture.right;:" />
 						<menulist id="rockerGestureR" sizetopopup="none" oncommand="gShouldCommit = true;">
+							<menupopup />
+						</menulist>
+					</row>
+				</rows>
+			</grid>
+		</groupbox>
+		<groupbox uigroup="rockergesturemiddle">
+			<caption>
+				<checkbox id="rockergesturemiddle" label="&rockerGesture.middle;"
+				          preference="pref:rockergesture.middle"
+				          onsyncfrompreference="PrefsUI.updateUIGroup('rockergesturemiddle');" />
+			</caption>
+			<description style="font-style: italic">&rockerGesture.middle.description;</description>
+			<grid>
+				<columns>
+					<column />
+					<column />
+				</columns>
+				<rows>
+					<row align="center">
+						<label value="&rockerGesture.middle.left;:" />
+						<menulist id="rockerGestureML" sizetopopup="none" oncommand="gShouldCommit = true;">
+							<menupopup />
+						</menulist>
+					</row>
+					<row align="center">
+						<label value="&rockerGesture.middle.right;:" />
+						<menulist id="rockerGestureMR" sizetopopup="none" oncommand="gShouldCommit = true;">
+							<menupopup />
+						</menulist>
+					</row>
+					<row align="center">
+						<label value="&rockerGesture.left.middle;:" />
+						<menulist id="rockerGestureLM" sizetopopup="none" oncommand="gShouldCommit = true;">
+							<menupopup />
+						</menulist>
+					</row>
+					<row align="center">
+						<label value="&rockerGesture.right.middle;:" />
+						<menulist id="rockerGestureRM" sizetopopup="none" oncommand="gShouldCommit = true;">
 							<menupopup />
 						</menulist>
 					</row>

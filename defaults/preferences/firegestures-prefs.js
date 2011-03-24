@@ -1,6 +1,7 @@
 pref("extensions.firegestures.mousegesture", true);
 pref("extensions.firegestures.wheelgesture", true);
 pref("extensions.firegestures.rockergesture", false);
+pref("extensions.firegestures.rockergesture.middle", false);
 pref("extensions.firegestures.keypressgesture", true);
 pref("extensions.firegestures.tabwheelgesture", false);
 pref("extensions.firegestures.trigger_button", 2);

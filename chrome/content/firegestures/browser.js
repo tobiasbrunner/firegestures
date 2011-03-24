@@ -105,6 +105,10 @@ var FireGestures = {
 			case "wheel-down": 
 			case "rocker-left": 
 			case "rocker-right": 
+			case "rocker-middle-left":
+			case "rocker-middle-right":
+			case "rocker-left-middle":
+			case "rocker-right-middle":
 			case "keypress-ctrl": 
 			case "keypress-shift": 
 				this.onMouseGesture(event, aGesture);
