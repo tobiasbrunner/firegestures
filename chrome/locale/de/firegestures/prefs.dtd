@@ -34,6 +34,12 @@
 <!ENTITY rockerGesture "Klickgesten">
 <!ENTITY rockerGesture.left "Linksklick mit gedrückter rechter Maustaste">
 <!ENTITY rockerGesture.right "Rechtsklick mit gedrückter linker Maustaste">
+<!ENTITY rockerGesture.middle "Klickgesten mit mittlerer Maustaste">
+<!ENTITY rockerGesture.middle.description "Diese Gesten sind nicht mit dem automatischen Bildlauf kompatibel, dieser wird daher beim Neustart deaktiviert.">
+<!ENTITY rockerGesture.middle.left "Linksklick mit gedrückter mittlerer Maustaste">
+<!ENTITY rockerGesture.middle.right "Rechtsklick mit gedrückter mittlerer Maustaste">
+<!ENTITY rockerGesture.left.middle "Mittelklick mit gedrückter linker Maustaste">
+<!ENTITY rockerGesture.right.middle "Mittelklick mit gedrückter rechter Maustaste">
 <!ENTITY keypressGesture "Tastengesten">
 <!ENTITY keypressGesture.ctrl "Mausgeste mit gedrückter STRG-Taste">
 <!ENTITY keypressGesture.shift "Mausgeste mit gedrückter UMSCH-Taste">
