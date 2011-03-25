@@ -359,8 +359,8 @@ xdGestureHandler.prototype = {
 				}
 				break;
 			case "DOMMouseScroll": 
-				// mouse geture > wheel gesture / wheel gesture > wheel gesture
-				if (this._state == STATE_GESTURE || this._state == STATE_WHEEL) {
+				// (mouse|rocker|wheel) gesture > wheel gesture
+				if (this._state == STATE_GESTURE || this._state == STATE_WHEEL || this._state == STATE_ROCKER) {
 					this._state = STATE_WHEEL;
 					this._invokeExtraGesture(event, event.detail < 0 ? "wheel-up" : "wheel-down");
 					// suppress page scroll
