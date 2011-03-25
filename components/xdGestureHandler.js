@@ -183,6 +183,7 @@ xdGestureHandler.prototype = {
 	_isMouseDownL: false,
 	_isMouseDownM: false,
 	_isMouseDownR: false,
+	_suppressClick: false,
 	_suppressContext: false,
 	_shouldFireContext: false,	// [Linux]
 
@@ -311,6 +312,10 @@ xdGestureHandler.prototype = {
 					this._isMouseDownR = false;
 				// need additional | && this._state != STATE_READY| condition?
 				if (!this._isMouseDownL && !this._isMouseDownM && !this._isMouseDownR) {
+					// suppress clicks after releasing the last button in a rocker gesture
+					if (this._state == STATE_ROCKER) {
+						this._suppressClick = true;
+					}
 					// keypress gesture
 					if (this._state == STATE_KEYPRESS) {
 						this._state = STATE_READY;
@@ -367,7 +372,8 @@ xdGestureHandler.prototype = {
 			case "click": 
 				// this fixes the bug: performing rocker-left on a link causes visiting the link
 				// need 'if (this._isMouseDownL || this._isMouseDownR)' condition?
-				if (this._state == STATE_ROCKER) {
+				if (this._state == STATE_ROCKER || this._suppressClick) {
+					this._suppressClick = false;
 					event.preventDefault();
 					event.stopPropagation();
 				}
