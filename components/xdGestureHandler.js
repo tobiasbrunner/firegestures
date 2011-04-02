@@ -189,7 +189,9 @@ xdGestureHandler.prototype = {
 
 	handleEvent: function FGH_handleEvent(event) {
 		switch (event.type) {
-			case "mousedown": 
+			case "mousedown":
+				// it seems that there is not always a click event, so avoid supressing regular clicks after rocker gestures
+				this._suppressClick = false;
 				if (event.button == 0) {
 					// suppress starting gesture on textboxes and textarea elements etc.
 					var targetName = event.target.localName.toUpperCase();
