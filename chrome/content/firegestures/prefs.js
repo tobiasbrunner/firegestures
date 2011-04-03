@@ -230,6 +230,9 @@ var PrefsUI = {
 			// this fixes the problem: colorpicker looks active even if setting disabled to true
 			if (elt.localName == "colorpicker" || elt.id == "trailSample")
 				elt.style.opacity = enable ? 1 : 0.5;
+			// similar for images (styling with css does not work)
+			if (elt.localName == "image")
+				elt.style.opacity = enable ? 1 : 0.5;
 		});
 		if (aGroupName == "trail")
 			this.updateTrail();
@@ -239,7 +242,8 @@ var PrefsUI = {
 		var button = getElement("pref:triggerbutton").value;
 		["wheelUpLabel", "wheelDownLabel"].forEach(function(id) {
 			var label = getElement(id);
-			label.value = label.getAttribute("value" + button);
+			label.setAttribute("tooltiptext", label.getAttribute("tooltiptext" + button));
+			label.className = "button" + button;
 		});
 		window.sizeToContent();
 	},

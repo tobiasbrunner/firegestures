@@ -25,6 +25,45 @@ radio[pane][selected="true"] .paneButtonIcon {
 	opacity: 1.0;
 }
 
+image[id^="rocker"] {
+	list-style-image: url("chrome://firegestures/skin/rocker-gestures.png");
+}
+
+image[id^="wheel"] {
+	list-style-image: url("chrome://firegestures/skin/wheel-gestures.png");
+}
+
+label.button0 #wheelGestureUImage,
+#rockerGestureLImage {
+	-moz-image-region: rect(0px, 32px, 16px, 0px);
+}
+
+label.button0 #wheelGestureDImage,
+#rockerGestureRImage {
+	-moz-image-region: rect(16px, 32px, 32px, 0px);
+}
+
+label.button1 #wheelGestureUImage,
+#rockerGestureMLImage {
+	-moz-image-region: rect(32px, 32px, 48px, 0px);
+}
+
+label.button1 #wheelGestureDImage,
+#rockerGestureMRImage {
+	-moz-image-region: rect(48px, 32px, 64px, 0px);
+}
+
+label.button2 #wheelGestureUImage,
+#rockerGestureLMImage {
+	-moz-image-region: rect(64px, 32px, 80px, 0px);
+}
+
+label.button2 #wheelGestureDImage,
+#rockerGestureRMImage {
+	-moz-image-region: rect(80px, 32px, 96px, 0px);
+}
+
+
 #trailSampleOuter {
 	background-color: white;
 	min-height: 1.5em;

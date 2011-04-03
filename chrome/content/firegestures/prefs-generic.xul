@@ -67,19 +67,21 @@
 				</columns>
 				<rows>
 					<row align="center">
-						<label id="wheelUpLabel"
-						       value0="&wheelGesture.up.left;:"
-						       value1="&wheelGesture.up.middle;:"
-						       value2="&wheelGesture.up.right;:" />
+						<label id="wheelUpLabel" control="wheelGestureU"
+						       tooltiptext0="&wheelGesture.up.left;"
+						       tooltiptext1="&wheelGesture.up.middle;"
+						       tooltiptext2="&wheelGesture.up.right;">
+							<image id="wheelGestureUImage" />
+						</label>
 						<menulist id="wheelGestureU" sizetopopup="none" oncommand="gShouldCommit = true;">
 							<menupopup />
 						</menulist>
-					</row>
-					<row align="center">
-						<label id="wheelDownLabel"
-						       value0="&wheelGesture.down.left;:"
-						       value1="&wheelGesture.down.middle;:"
-						       value2="&wheelGesture.down.right;:" />
+						<label id="wheelDownLabel" control="wheelGestureD"
+						       tooltiptext0="&wheelGesture.down.left;"
+						       tooltiptext1="&wheelGesture.down.middle;"
+						       tooltiptext2="&wheelGesture.down.right;">
+							<image id="wheelGestureDImage" />
+						</label>
 						<menulist id="wheelGestureD" sizetopopup="none" oncommand="gShouldCommit = true;">
 							<menupopup />
 						</menulist>
@@ -100,13 +102,15 @@
 				</columns>
 				<rows>
 					<row align="center">
-						<label value="&rockerGesture.left;:" />
+						<label control="rockerGestureL" tooltiptext="&rockerGesture.left;">
+							<image id="rockerGestureLImage" />
+						</label>
 						<menulist id="rockerGestureL" sizetopopup="none" oncommand="gShouldCommit = true;">
 							<menupopup />
 						</menulist>
-					</row>
-					<row align="center">
-						<label value="&rockerGesture.right;:" />
+						<label control="rockerGestureR" tooltiptext="&rockerGesture.right;">
+							<image id="rockerGestureRImage" />
+						</label>
 						<menulist id="rockerGestureR" sizetopopup="none" oncommand="gShouldCommit = true;">
 							<menupopup />
 						</menulist>
@@ -127,25 +131,29 @@
 				</columns>
 				<rows>
 					<row align="center">
-						<label value="&rockerGesture.middle.left;:" />
+						<label control="rockerGestureML" tooltiptext="&rockerGesture.middle.left;">
+							<image id="rockerGestureMLImage" />
+						</label>
 						<menulist id="rockerGestureML" sizetopopup="none" oncommand="gShouldCommit = true;">
 							<menupopup />
 						</menulist>
-					</row>
-					<row align="center">
-						<label value="&rockerGesture.middle.right;:" />
+						<label control="rockerGestureMR" tooltiptext="&rockerGesture.middle.right;">
+							<image id="rockerGestureMRImage" />
+						</label>
 						<menulist id="rockerGestureMR" sizetopopup="none" oncommand="gShouldCommit = true;">
 							<menupopup />
 						</menulist>
 					</row>
 					<row align="center">
-						<label value="&rockerGesture.left.middle;:" />
+						<label control="rockerGestureLM" tooltiptext="&rockerGesture.left.middle;">
+							<image id="rockerGestureLMImage" />
+						</label>
 						<menulist id="rockerGestureLM" sizetopopup="none" oncommand="gShouldCommit = true;">
 							<menupopup />
 						</menulist>
-					</row>
-					<row align="center">
-						<label value="&rockerGesture.right.middle;:" />
+						<label control="rockerGestureRM" tooltiptext="&rockerGesture.right.middle;">
+							<image id="rockerGestureRMImage" />
+						</label>
 						<menulist id="rockerGestureRM" sizetopopup="none" oncommand="gShouldCommit = true;">
 							<menupopup />
 						</menulist>

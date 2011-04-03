@@ -42,6 +42,9 @@
  *     Portions created by Marc Boullet are Copyright (C) 2003, 
  *     Marc Boullet. All Rights Reserved.
  *
+ *     Some icons are by Yusuke Kamiyamane (http://p.yusukekamiyamane.com).
+ *     Available under a Creative Commons Attribution 3.0 Unported License.
+ *
  * Alternatively, the contents of this file may be used under the terms of
  * either the GNU General Public License Version 2 or later (the "GPL"), or
  * the GNU Lesser General Public License Version 2.1 or later (the "LGPL"),
